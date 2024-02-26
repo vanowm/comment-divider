@@ -77,10 +77,24 @@
           "default": false,
           "description": "Set whether the divider will be shrink consider indent size, or will be always fixed length."
         },
+        "comment-divider.mainHeaderFillerTop": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10,
+          "default": "-",
+          "description": "Set symbol for main header line filling (only one)."
+        },
+        "comment-divider.mainHeaderFillerBottom": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10,
+          "default": "-",
+          "description": "Set symbol for main header line filling (only one)."
+        },
         "comment-divider.mainHeaderFiller": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 1,
+          "maxLength": 10,
           "default": "-",
           "description": "Set symbol for main header line filling (only one)."
         },
@@ -117,7 +131,7 @@
         "comment-divider.subheaderFiller": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 1,
+          "maxLength": 10,
           "default": "-",
           "description": "Set symbol for subheader line filling (only one)."
         },
@@ -154,7 +168,7 @@
         "comment-divider.lineFiller": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 1,
+          "maxLength": 10,
           "default": "-",
           "description": "Set symbol for solid line filling."
         },

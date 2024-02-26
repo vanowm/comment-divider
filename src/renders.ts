@@ -1,27 +1,25 @@
-import { getConfig } from './config';
-import { checkLongText, checkCommentChars, checkFillerLen } from './errors';
 import { BUILDERS_MAP, buildSolidLine } from './builders';
+import { getConfig } from './config';
+import { checkCommentChars, checkLongText } from './errors';
 import { TRANSFORM_MAP } from './transforms';
-import { PresetId, IConfig } from './types';
+import { IConfig, PresetId } from './types';
 
 const extractIndent = (rawText: string): string => rawText.split(/\S+/)[0];
 
 const renderHeader = (croppedText: string, config: IConfig, indent: string): string => {
   checkCommentChars(croppedText, config.limiters);
   checkLongText(croppedText, config.lineLen, config.limiters);
-  checkFillerLen(config.sym);
 
   const transformedWords = TRANSFORM_MAP[config.transform](croppedText);
   const buildFn = BUILDERS_MAP[config.height];
-  return buildFn(config, transformedWords, indent);
+  return buildFn(config, transformedWords, indent, config.fillerSym);
 };
 
 const renderLine = (config: IConfig, indent: string): string => {
   checkLongText('', config.lineLen, config.limiters);
-  checkFillerLen(config.sym);
 
   const buildFn = buildSolidLine;
-  return buildFn(config, indent);
+  return buildFn(config, indent, config.fillerSym);
 };
 
 export const render = (type: PresetId, rawText: string, lang: string): string => {

@@ -1,8 +1,26 @@
 import { GAP_SYM, NEW_LINE_SYM } from './constants';
 import { IWordsAnchors, IConfig, CharList, Align, Height } from './types';
 
-const buildBlankCharList = (lineLen: number, filler: string): CharList =>
-  Array(lineLen).fill(filler);
+function splitAndDuplicate(word: string, desiredLength: number) {
+  // Split the word into an array of characters
+  const chars = word.split('');
+
+  // Initialize an empty array to store the duplicated arrays
+  const result = [];
+
+  // Loop until the concatenated arrays reach or exceed the desired length
+  while (result.length < desiredLength) {
+    // Concatenate the current array with the duplicatedArrays
+    result.push(...chars);
+  }
+
+  // Trim the array to the desired length
+  return result.slice(0, desiredLength);
+}
+
+const buildBlankCharList = (lineLen: number, filler: string): CharList => {
+  return splitAndDuplicate(filler, lineLen);
+};
 
 const charListToString = (charList: CharList) => charList.join('');
 
@@ -68,6 +86,7 @@ const getWordsAnchors = (
   }
 };
 
+// replaces char list with limiters if needed
 export const withLimiters = (leftLim: string, rightLim: string) => (
   charList: CharList
 ): CharList => {
@@ -111,24 +130,31 @@ const composeInjectors = (...injectors) => (charList: CharList) =>
  * Builder functions.
  */
 
-export const buildSolidLine = (config: IConfig, leftIndent: string): string => {
+// used for both solid line + subheader
+export const buildSolidLine = (
+  config: IConfig,
+  leftIndent: string,
+  sym: string
+): string => {
   const injectLimiters = withLimiters(config.limiters.left, config.limiters.right);
 
-  const blankCharList = buildBlankCharList(config.lineLen, config.sym);
+  const blankCharList = buildBlankCharList(config.lineLen, sym);
   const computedCharList = composeInjectors(injectLimiters)(blankCharList);
 
   return leftIndent + charListToString(computedCharList);
 };
 
+// used for both header + subheader
 export const buildWordsLine = (
   config: IConfig,
   transformedWords: string,
-  leftIndent: string
+  leftIndent: string,
+  sym: string
 ): string => {
   const injectLimiters = withLimiters(config.limiters.left, config.limiters.right);
   const injectWords = withWords(config.align, transformedWords);
 
-  const blankCharList = buildBlankCharList(config.lineLen, config.sym);
+  const blankCharList = buildBlankCharList(config.lineLen, sym);
   const computedCharList = composeInjectors(injectLimiters, injectWords)(blankCharList);
 
   return leftIndent + charListToString(computedCharList);
@@ -139,10 +165,15 @@ export const buildBlock = (
   transformedWords: string,
   leftIndent: string
 ): string => {
-  const textConfig: IConfig = { ...config, sym: GAP_SYM };
-  const topLine = buildSolidLine(config, leftIndent);
-  const textLine = buildWordsLine(textConfig, transformedWords, leftIndent);
-  const bottomLine = buildSolidLine(config, leftIndent);
+  const textConfig: IConfig = { ...config, topSym: GAP_SYM };
+  const topLine = buildSolidLine(config, leftIndent, config.topSym);
+  const textLine = buildWordsLine(
+    textConfig,
+    transformedWords,
+    leftIndent,
+    config.fillerSym
+  );
+  const bottomLine = buildSolidLine(config, leftIndent, config.bottomSym);
 
   return topLine + NEW_LINE_SYM + textLine + NEW_LINE_SYM + bottomLine;
 };

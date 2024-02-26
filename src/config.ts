@@ -17,13 +17,24 @@ const getPreset = (type: PresetId): IPreset => {
   const section = workspace.getConfiguration(EXT_ID);
 
   const lineLen = section.get<number>('length');
-  const sym = section.get<string>(`${type}Filler`);
+  const fillerSym = section.get<string>(`${type}Filler`);
+  const topSym = section.get<string>(`${type}FillerTop`);
+  const bottomSym = section.get<string>(`${type}FillerBottom`);
   const height = section.get<Height>(`${type}Height`);
   const align = section.get<Align>(`${type}Align`);
   const transform = section.get<Transform>(`${type}Transform`);
   const includeIndent = section.get<boolean>(`shouldLengthIncludeIndent`);
 
-  return { lineLen, sym, height, align, transform, includeIndent };
+  return {
+    lineLen,
+    fillerSym,
+    topSym,
+    bottomSym,
+    height,
+    align,
+    transform,
+    includeIndent
+  };
 };
 
 const getLanguagesMapConfig = () =>

@@ -17,7 +17,9 @@ export interface ILimiters {
 
 export interface IPreset {
   lineLen: number;
-  sym: string;
+  topSym?: string;
+  bottomSym?: string;
+  fillerSym?: string;
   height: Height;
   align: Align;
   transform: Transform;

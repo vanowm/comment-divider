@@ -39,9 +39,6 @@ export const checkLongText = (text: string, lineLen: number, limiters: ILimiters
   if (text.length > maxAllowedLen) throw new Error('LONG_TEXT');
 };
 
-export const checkFillerLen = (fillerSym: string) => {
-  if (fillerSym.length !== 1) throw new Error('FILLER_LEN');
-};
 
 export const handleError = (e: Error) => {
   const errorMsg = ERRORS[e.message];
