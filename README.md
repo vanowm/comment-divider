@@ -1,12 +1,12 @@
 <p align="center">
-  <img alt="Comment Divider" src="https://github.com/stackbreak/comment-divider/raw/master/img/logo_256.png" width="20%"  />
+  <img alt="Comment Divider" src="https://github.com/sujenphea/comment-divider/raw/master/img/logo.png" width="20%"  />
 </p>
 
 <h1 align="center">
-  Comment Divider
+  Comment Divider Ext
 </h1>
 
-This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension, which provides commands for generating comment-wrapped separators from line content.
+This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension, which provides commands for generating comment-wrapped separators from line content. This is an extension of the [original Comment Divider extension](https://github.com/stackbreak/comment-divider), where the filler symbols are fully customisable.
 
 **[Supports all common languages](#language-support).**
 
@@ -114,8 +114,14 @@ or in html files
 ### Main Header
 
 ```json
-  // "Set symbol for main header line filling (only one).
+  // "Set symbol for main header line filling.
   "comment-divider.mainHeaderFiller": "-",
+
+  // "Set symbol for main header top line.
+  "comment-divider.mainHeaderFillerTop": "-",
+  
+  // "Set symbol for main header bottom line.
+  "comment-divider.mainHeaderFillerBottom": "-",
 
   // Set main header vertical style.
   "comment-divider.mainHeaderHeight": "block",
@@ -130,7 +136,7 @@ or in html files
 ### Subheader
 
 ```json
-  // "Set symbol for subheader line filling (only one).
+  // "Set symbol for subheader line filling.
   "comment-divider.subheaderFiller": "-",
 
   // Set subheader vertical style.
@@ -175,4 +181,4 @@ The example above defines the right characters for `toml` and overrides `scss` d
 
 ## Issues
 
-Request features and report bugs using [GitHub](https://github.com/stackbreak/comment-divider/issues).
+Request features and report bugs using [GitHub](https://github.com/sujenphea/comment-divider/issues).
