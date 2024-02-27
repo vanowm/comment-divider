@@ -12,7 +12,7 @@ This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension,
 
 ## Install
 
-https://marketplace.visualstudio.com/items?itemName=stackbreak.comment-divider
+https://marketplace.visualstudio.com/items?itemName=sujenp.comment-divider-ext
 
 ## Demo
 
