@@ -3,10 +3,10 @@
 </p>
 
 <h1 align="center">
-  Comment Divider Ext
+  Comment Divider Extension
 </h1>
 
-This is **[Visual Studio Code](https://github.com/Microsoft/vscode)** extension, which provides commands for generating comment-wrapped separators from line content. This is an extension of the [original Comment Divider extension](https://github.com/stackbreak/comment-divider), where the filler symbols are fully customisable.
+This extension provides commands for separating line content with comments for readability. This is an extension of the [original Comment Divider extension](https://github.com/stackbreak/comment-divider), where the filler symbols are fully customisable.
 
 **[Supports all common languages](#language-support).**
 
@@ -16,14 +16,37 @@ https://marketplace.visualstudio.com/items?itemName=sujenp.comment-divider-ext
 
 ## Demo
 
-![Subheader Demo](img/sub-header.gif)
+![Quick Demo](img/demo.gif)
+
+## Customizations
+
+Unlike the existing fillers in the [original Comment Divider extension](https://github.com/stackbreak/comment-divider), the fillers are not limited to one character. Moreover, there are extensive customisation to all the filler symbols.
+
+### Main header
+
+```json
+  // "Set symbol for main header line filling.
+  "comment-divider.mainHeaderFiller": "-",
+
+  // "Set symbol for main header top line.
+  "comment-divider.mainHeaderFillerTop": "-",
+
+  // "Set symbol for main header bottom line.
+  "comment-divider.mainHeaderFillerBottom": "-",
+```
+
+### Subheader
+
+```json
+  // "Set symbol for subheader line filling.
+  "comment-divider.subheaderFiller": "-",
+```
 
 ## Commands
 
 ### Make main header
 
 - Default Shortcut:
-
   **`Shift`** + **`Alt`** + **`X`**
 
 - Default Style:
@@ -95,9 +118,9 @@ or in html files
   ```js
   /* --------------------------------- indent0 -------------------------------- */
 
-      /* --------------------------------- indent1 -------------------------------- */
+  /* --------------------------------- indent1 -------------------------------- */
 
-          /* --------------------------------- indent2 -------------------------------- */
+  /* --------------------------------- indent2 -------------------------------- */
   ```
 
 - **if `shouldLengthIncludeIndent: true`**
@@ -105,11 +128,10 @@ or in html files
   ```js
   /* --------------------------------- indent0 -------------------------------- */
 
-      /* ------------------------------- indent1 ------------------------------ */
+  /* ------------------------------- indent1 ------------------------------ */
 
-          /* ----------------------------- indent2 ---------------------------- */
+  /* ----------------------------- indent2 ---------------------------- */
   ```
-
 
 ### Main Header
 
@@ -119,7 +141,7 @@ or in html files
 
   // "Set symbol for main header top line.
   "comment-divider.mainHeaderFillerTop": "-",
-  
+
   // "Set symbol for main header bottom line.
   "comment-divider.mainHeaderFillerBottom": "-",
 
