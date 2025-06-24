@@ -24,6 +24,7 @@ export interface IPreset {
   align: Align;
   transform: Transform;
   includeIndent: boolean;
+  allowLongText: boolean;
 }
 
 export interface IConfig extends IPreset {

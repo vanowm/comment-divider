@@ -8,7 +8,8 @@ const extractIndent = (rawText: string): string => rawText.split(/\S+/)[0];
 
 const renderHeader = (croppedText: string, config: IConfig, indent: string): string => {
   checkCommentChars(croppedText, config.limiters);
-  checkLongText(croppedText, config.lineLen, config.limiters);
+  // Skip long text validation if allowLongText is enabled, permitting longer text in headers.
+  if (!config.allowLongText) checkLongText(croppedText, config.lineLen, config.limiters);
 
   const transformedWords = TRANSFORM_MAP[config.transform](croppedText);
   const buildFn = BUILDERS_MAP[config.height];
@@ -16,7 +17,7 @@ const renderHeader = (croppedText: string, config: IConfig, indent: string): str
 };
 
 const renderLine = (config: IConfig, indent: string): string => {
-  checkLongText('', config.lineLen, config.limiters);
+  if (!config.allowLongText) checkLongText('', config.lineLen, config.limiters);
 
   const buildFn = buildSolidLine;
   return buildFn(config, indent, config.fillerSym);

@@ -17,6 +17,7 @@ const getPreset = (type: PresetId): IPreset => {
   const section = workspace.getConfiguration(EXT_ID);
 
   const lineLen = section.get<number>('length');
+  const allowLongText = section.get<boolean>('allowLongText');
   const fillerSym = section.get<string>(`${type}Filler`);
   const topSym = section.get<string>(`${type}FillerTop`);
   const bottomSym = section.get<string>(`${type}FillerBottom`);
@@ -33,7 +34,8 @@ const getPreset = (type: PresetId): IPreset => {
     height,
     align,
     transform,
-    includeIndent
+    includeIndent,
+    allowLongText
   };
 };
 
